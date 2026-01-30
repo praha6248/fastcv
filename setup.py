@@ -12,9 +12,17 @@ setup(
                 "kernels/sobel.cu",
                 "kernels/dilation.cu",
                 "kernels/erosion.cu",
+                "kernels/adaptive_threshold.cu",
                 "kernels/module.cpp",
             ],
-            extra_compile_args={"cxx": ["-O2"]},
+            extra_compile_args={
+                "cxx": ["-O3"],
+                "nvcc": [
+                    "-O3", 
+                    "--use_fast_math", 
+                    "--extended-lambda" 
+                ]
+            },
         ),
     ],
     cmdclass={"build_ext": BuildExtension},
